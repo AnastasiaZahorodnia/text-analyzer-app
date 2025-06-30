@@ -65,8 +65,3 @@ src/
 ESLint is not included in this lightweight test project.
 Code is formatted with Prettier (run `npx prettier --write "src/**/*.{ts,html,css}"`).
 
----
-
-## Credits
-
-Created as a solution for a recruitment test task.
