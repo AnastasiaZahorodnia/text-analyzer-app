@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <textarea
+    rows="10"
+    [value]="text()"
+    (input)="onInput($event)"
+    (mouseup)="updateSelection($event)"
+    placeholder="Enter text..."
+  ></textarea>
+
+  <div class="toolbar">
+    <span>Characters: {{ charCount() }}</span>
+    <span>Words: {{ wordCount() }}</span>
+    <button type="button" (click)="fetchSynonyms()">Get synonyms</button>
+    <button type="button" (click)="copyAll()">Copy text</button>
+  </div>
+
+  <div *ngIf="loading()">Loading...</div>
+  <ul class="syn-list" *ngIf="synonyms().length">
+    <li *ngFor="let w of synonyms()" (click)="replace(w)">{{ w }}</li>
+  </ul>
+</div>

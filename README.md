@@ -1,59 +1,72 @@
-# Argulartest
+# Text Analyzer Web App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+Simple Angular standalone application that lets you:
 
-## Development server
+* type or paste any text into a textarea;
+* select a word or phrase and press **Get synonyms** – the app queries the free [Datamuse API](https://www.datamuse.com/api/) and shows up to 20 synonyms;
+* click a synonym to instantly replace the selected fragment in the text;
+* see live **character** and **word** counters;
+* copy the entire text with one click.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## Prerequisites
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+* **Node.js 18 LTS+** (any LTS works; odd-numbered versions are not recommended for production).
+* **npm 9+** (bundled with Node).
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Install project dependencies once:
 
 ```bash
-ng generate --help
+npm ci   # or npm install
 ```
 
-## Building
+---
 
-To build the project run:
+## Development
+
+Run a local dev server with hot-reload:
 
 ```bash
-ng build
+npm start   # alias for ng serve
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Open <http://localhost:4200> in your browser.
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Production build
 
 ```bash
-ng test
+npm run build   # alias for ng build --configuration production
 ```
 
-## Running end-to-end tests
+Optimised files are emitted to `dist/`.
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
+## Project structure (key files)
+
+```
+src/
+ ├─ app/
+ │   ├─ text-analyzer/             # main feature component
+ │   │   ├─ text-analyzer.component.{ts,html,css}
+ │   ├─ synonym.service.ts         # Datamuse HTTP client
+ │   ├─ app.routes.ts              # single route -> TextAnalyzerComponent
+ │   └─ app.config.ts              # global providers (HttpClient etc.)
+ └─ main.ts                        # bootstrap application
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## Lint & format
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+ESLint is not included in this lightweight test project.
+Code is formatted with Prettier (run `npx prettier --write "src/**/*.{ts,html,css}"`).
+
+---
+
+## Credits
+
+Created as a solution for a recruitment test task.
